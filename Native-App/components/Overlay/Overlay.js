@@ -21,7 +21,6 @@ class Overlay extends React.Component {
         
     render() {
         const { bgColor, startCloseAnimation, animated_opacity } = this.props;
-        console.log(startCloseAnimation)
         return (
             <View 
                 style={{ height: Device.height, width: Device.width, ...styles.overlayWrapper}} 

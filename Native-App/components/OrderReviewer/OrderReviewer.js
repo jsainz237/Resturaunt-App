@@ -15,10 +15,6 @@ class OrderReviewer extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        console.log(this.props.animated_X_translation)
-    }
-
     render() {
         const { animated_X_translation } = this.props;
         return (
