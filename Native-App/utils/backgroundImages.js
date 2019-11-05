@@ -3,7 +3,7 @@
  */
 
 let backgroundImages = [];
-backgroundImages.push(require('../assets/dish2.png'));
-backgroundImages.push(require('../assets/pizza1.png'));
+backgroundImages.push(require('../assets/images/dish2.png'));
+backgroundImages.push(require('../assets/images/pizza1.png'));
 
 export default backgroundImages;

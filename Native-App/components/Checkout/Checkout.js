@@ -10,7 +10,7 @@ import DeviceSafeMargins from '../../utils/DeviceSafeMargins'
 import Overlay from '../Overlay/Overlay'
 import OrderReviewer from '../OrderReviewer/OrderReviewer'
 
-const receiptImage = require('../../assets/invoice.png');
+const receiptImage = require('../../assets/images/invoice.png');
 
 /**
  * @name Checkout

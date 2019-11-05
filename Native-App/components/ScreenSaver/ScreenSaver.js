@@ -10,7 +10,7 @@ import backgroundImages from '../../utils/backgroundImages';
 import styles from './ScreenSaver.scss'
 import { updateCurrentPage } from '../AppNavigator/AppNavigator.reducer'
 import Device from '../../utils/deviceDimensions'
-const logoCircle = require('../../assets/logoCircle.png');
+const logoCircle = require('../../assets/images/logoCircle.png');
 
 class ScreenSaver extends React.Component {
     constructor(props) {
@@ -23,6 +23,10 @@ class ScreenSaver extends React.Component {
         this.logo_circle_height = this.logo_circle_width = 750;
         this.logo_circle_top_position = ((Device.height - 150) / 2) - (this.logo_circle_height / 2);
         this.logo_circle_left_position = (Device.width / 2) - (this.logo_circle_width / 2);
+        
+        this.goToHomePage = this.goToHomePage.bind(this);
+        this.startCircleAnimation = this.startCircleAnimation.bind(this);
+
     }
 
     async componentDidMount() {
@@ -37,7 +41,7 @@ class ScreenSaver extends React.Component {
 
     goToHomePage() {
         const { navigate } = this.props.navigation;
-        navigate('Home', {name: 'Jesse'})
+        navigate('Menu', {name: 'Jesse'})
     }
 
     startCircleAnimation() {
