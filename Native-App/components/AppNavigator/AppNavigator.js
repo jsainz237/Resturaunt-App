@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 // APP
 import ScreenSaver from '../ScreenSaver/ScreenSaver';
-import Home from '../Home/Home';
+import Menu from '../Menu/Menu';
 
 /**
  * adds navigation props to all components
@@ -13,11 +13,11 @@ import Home from '../Home/Home';
 const navigator = createStackNavigator(
     {
         ScreenSaver: { screen: ScreenSaver },
-        Home: {
-            screen: Home,
+        Menu: {
+            screen: Menu,
             // disable swiping back to screensaver on Home page
             navigationOptions: {
-                title: "Home",
+                title: "Menu",
                 headerLeft: null,
                 gesturesEnabled: false,
             }
