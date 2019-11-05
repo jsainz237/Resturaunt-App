@@ -1,9 +1,11 @@
+@import '../../global';
+
 .wrapper {
-    background-color: rgb(33,33,33);
+    background-color: $dark-gray;
 }
 
 .logoContainer {
-    background-color: rgb(33,33,33);
+    background-color: $dark-gray;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,12 +20,12 @@
 }
 
 .ginoLogoText {
-    color: greenyellow;
+    color: $bright-green;
     font-size: 7rem;
 }
 
 .subLogoText {
-    color: red;
+    color: $dark-red;
     font-size: 2rem;
 }
 
@@ -31,10 +33,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(33,33,33);
+    background-color: $dark-gray
 }
 
 .startText {
-    color: rgba(255, 255, 255, 0.575);
+    color: $light-gray;
     font-size: 3rem;
 }
