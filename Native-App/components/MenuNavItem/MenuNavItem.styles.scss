@@ -1,0 +1,13 @@
+@import '../../global';
+
+.categoryName {
+    font-size: 33;
+    color: $light-gray;
+    margin-top: 16;
+}
+
+.selectedBar {
+    width: 100%;
+    height: 5px;
+    background-color: $bright-green;
+}
