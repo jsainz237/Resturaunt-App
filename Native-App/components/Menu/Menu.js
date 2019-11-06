@@ -25,8 +25,8 @@ class Menu extends React.Component {
                 { 
                     name: "Item-2",
                     category: "Drinks",
-                    description: "This is the description",
-                    photo: "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwiw_c-L_NHlAhWRtZ4KHfFbAUsQjRx6BAgBEAQ&url=https%3A%2F%2Fmixthatdrink.com%2Fblue-long-island%2F&psig=AOvVaw3ZYV0zWZqUz7h_QCJHocqv&ust=1573005444706478",
+                    description: "This is the description of the item",
+                    photo: "http://www.pngnames.com/files/4/Cocktail-PNG-Photo-Background.png",
                     price: 7.99,
                 },
                 { 

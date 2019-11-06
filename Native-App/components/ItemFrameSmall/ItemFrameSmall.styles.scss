@@ -1,9 +1,9 @@
 @import '../../global';
 
-$smallItemHeight: 101px;
-$smallItemWidth: 109px;
+$smallItemHeight: 100px;
+$smallItemWidth: 110px;
 
-.itemContainer {
+.itemSmallContainer {
     height: $smallItemHeight;
     width: $smallItemWidth;
     background-color: white;  
@@ -14,7 +14,7 @@ $smallItemWidth: 109px;
 $topMargin: 14px;
 $bottomMargin: 12px;
 $sideMargin: 18px;
-.itemText {
+.itemSmallText {
     display: flex;
     flex-direction: column;
     margin-top: $topMargin;

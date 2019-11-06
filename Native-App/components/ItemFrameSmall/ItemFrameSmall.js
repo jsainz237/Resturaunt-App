@@ -33,10 +33,10 @@ class ItemFrameSmall extends React.Component {
                     shadowOpacity: 0.27,
                     shadowRadius: 4.65,
                     elevation: 6,
-                    ...styles.itemContainer
+                    ...styles.itemSmallContainer
                 }}
             >
-                <View style={{ fontFamily: 'Montserrat-Medium', ...styles.itemText }}>
+                <View style={{ fontFamily: 'Montserrat-Medium', ...styles.itemSmallText }}>
                     <Text style={{ fontSize: 15, textAlign: 'center' }}>{item.name}</Text>
                     <Text style={{ fontSize: 12, textAlign: 'center' }}>{itemPrice}</Text>
                 </View>
