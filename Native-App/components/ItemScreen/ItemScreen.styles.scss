@@ -1,0 +1,10 @@
+.itemScreenWrapper {
+    z-index: 100;
+}
+
+.itemContainer {
+    z-index: 150;
+    position: absolute;
+    background-color: white;
+    border-radius: 25px;
+}

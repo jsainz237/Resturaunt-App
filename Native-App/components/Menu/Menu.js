@@ -9,6 +9,7 @@ import MenuNav from '../MenuNav/MenuNav'
 import { updateCurrentPage } from '../AppNavigator/AppNavigator.reducer'
 import ItemFrameSmall from '../ItemFrameSmall/ItemFrameSmall'
 import Category from '../Category/Category'
+import ItemScreen from '../ItemScreen/ItemScreen'
 
 class Menu extends React.Component {
     constructor(props) {
@@ -58,8 +59,10 @@ class Menu extends React.Component {
     }
     
     render() {
+        const { itemToShow } = this.props;
         return (
             <SafeAreaView style={styles.safeView}>
+                { itemToShow && <ItemScreen item={itemToShow} /> }
                 <MenuNav />
                 <ScrollView style={styles.menuContainer}>
                     {this.renderItems()}
@@ -69,10 +72,16 @@ class Menu extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        itemToShow: state.ItemScreen.item
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         updateCurrentPage: (currentPage) => dispatch(updateCurrentPage(currentPage))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Menu)
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)
