@@ -11,7 +11,7 @@ import AnimatedBlurView from '../AnimatedBlurView/AnimatedBlurView'
  * @name Overlay
  * @description overlay to appear when the review bar is open
  * @param {valid color} bgColor - color that the overlay should appear
- * @param {function} closeOrderReviewer - function that starts the closing animations
+ * @param {function} onTouch - function that starts the closing animations
  * @param {Animated.Value} animated_opacity - animated value for opacity
  */
 class Overlay extends React.Component {
@@ -20,11 +20,11 @@ class Overlay extends React.Component {
     }
         
     render() {
-        const { bgColor, startCloseAnimation, animated_opacity } = this.props;
+        const { bgColor, onTouch, animated_opacity } = this.props;
         return (
             <View 
                 style={{ height: Device.height, width: Device.width, ...styles.overlayWrapper}} 
-                onTouchEnd={() => startCloseAnimation()}
+                onTouchEnd={() => onTouch()}
             >
                 <AnimatedBlurView bgColor={bgColor} animated_opacity={animated_opacity}/>
             </View>

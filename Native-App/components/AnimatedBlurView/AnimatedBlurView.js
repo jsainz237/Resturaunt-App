@@ -19,7 +19,7 @@ class AnimatedBlurView extends React.Component {
             <BlurView 
                 style={{ height: '100%', width: '100%', backgroundColor: bgColor, opacity: animated_opacity }}
                 tint='dark'
-                intensity={100}
+                intensity={90}
             />
         )
     }

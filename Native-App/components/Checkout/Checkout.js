@@ -78,7 +78,7 @@ class Checkout extends React.Component {
                 <OrderReviewer animated_X_translation={this.animated_X_translation} />
 
                 { open ? 
-                    <Overlay bgColor='black' startCloseAnimation={this.startCloseAnimation} animated_opacity={this.animated_opacity} /> : 
+                    <Overlay bgColor='black' onTouch={this.startCloseAnimation} animated_opacity={this.animated_opacity} /> : 
                     null
                 }
 
