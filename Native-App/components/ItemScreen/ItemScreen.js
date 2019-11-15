@@ -1,6 +1,6 @@
 // VENDOR
 import React from 'react'
-import { View, Text, Animated, Easing, TextInput, Keyboard } from 'react-native'
+import { View, Text, Animated, Easing, TextInput, Keyboard, Image } from 'react-native'
 import { BlurView } from 'expo-blur'
 import { connect } from 'react-redux'
 import * as Font from 'expo-font'
@@ -39,7 +39,7 @@ class ItemScreen extends React.Component {
             left: ( deviceDimensions.width / 2 ) - ( this.componentDimensions.width / 2 )
         }
 
-        this.onOverlayTouch = this.onOverlayTouch.bind(this)
+        this.close = this.close.bind(this)
         this.onChangeText = this.onChangeText.bind(this)
         this.toggleTextInput = this.toggleTextInput.bind(this)
         this.changeQuantity = this.changeQuantity.bind(this)
@@ -66,7 +66,7 @@ class ItemScreen extends React.Component {
         this.keyboardDidHide.remove();
     }
 
-    onOverlayTouch() {
+    close() {
         // if keyboard is open, and 
         if (this.state.textInputActive) {
             Keyboard.dismiss();
@@ -97,21 +97,31 @@ class ItemScreen extends React.Component {
 
     render() {
         const { item } = this.props;
-        const { specialInstructions, quantity, showTextInput } = this.state;
-        const topPosition = this.state.textInputActive ? this.positions.top - 200 : this.positions.top;
+        const { specialInstructions, quantity, textInputActive } = this.state;
+        const topPosition = textInputActive ? this.positions.top - 200 : this.positions.top;
         const totalPrice = quantity * item.price;
 
         return !this.state.FontsLoaded ? null : (
             <Animated.View style={{ ...styles.itemScreenWrapper }}>
-                <Overlay bgColor='white' animated_opacity={this.animatedOpacity} onTouch={this.onOverlayTouch} />
-                <Animated.View style={{ 
-                    opacity: this.animatedOpacity,
-                    top: topPosition,
-                    left: this.positions.left,
-                    height: this.componentDimensions.height,
-                    width: this.componentDimensions.width,
-                    ...styles.itemContainer
-                }}>
+                <Overlay bgColor='white' animated_opacity={this.animatedOpacity} onTouch={this.close} />
+                { textInputActive ? null : 
+                    <Animated.Image 
+                        source={require('../../assets/images/X-icon.png')} 
+                        style={{ opacity: this.animatedOpacity, ...styles.xIcon}} 
+                        onTouchEnd={() => this.close()} 
+                    /> 
+                }
+                <Animated.View 
+                    onTouchEnd={() => textInputActive ? Keyboard.dismiss() : null } 
+                    style={{ 
+                        opacity: this.animatedOpacity,
+                        top: topPosition,
+                        left: this.positions.left,
+                        height: this.componentDimensions.height,
+                        width: this.componentDimensions.width,
+                        ...styles.itemContainer
+                    }}
+                >
                     <View style={styles.specifications}>
                         <Text style={{ fontFamily: 'Montserrat-Medium', ...styles.itemName }}>{item.name}</Text>
                         <View style={{ ...styles.specBar }}/>
