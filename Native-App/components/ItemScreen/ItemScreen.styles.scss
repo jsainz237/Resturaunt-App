@@ -1,3 +1,5 @@
+@import '../../global';
+
 .itemScreenWrapper {
     z-index: 100;
 }
@@ -7,4 +9,93 @@
     position: absolute;
     background-color: white;
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.specifications {
+    width: 550px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemName {
+    font-size: $primary;
+    color: $dark-gray;
+    margin-bottom: 15px;
+}
+
+.specBar {
+    height: 10px;
+    width: 550px;
+    background-color: $bright-green;
+    margin-bottom: 33px;
+}
+
+.itemDescription {
+    font-size: $secondary;
+    color: $dark-gray;
+    margin-bottom: 62px;
+}
+
+.textInput {
+    height: 160px;
+    width: 550px;
+    padding: 10px;
+    background-color: white;
+    border-color: $border-gray;
+    margin-bottom: 26px;
+}
+
+.quantityContainer {
+    height: 55px;
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 55px;
+    background-color: white;
+    border: 0.8px solid rgba(111, 111, 111, 0.5);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.minus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 55px;
+    background-color: white;
+    border: 0.8px solid rgba(111, 111, 111, 0.5);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.addToOrderButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-left: 124px;
+    padding-right: 20px;
+
+    width: 380px;
+    height: 50px;
+    background-color: $bright-green;
+    border-radius: 50px;
 }
