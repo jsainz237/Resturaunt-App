@@ -7,7 +7,7 @@ module.exports = function (passport) {
     .post(
       '/',
       passport.authenticate('jwt', { session: false }),
-      Authorization.roleAuthorization(['customer']),
+      Authorization.roleAuthorization(['customer', 'admin']),
       OrderController.createOrder
     );
   
@@ -23,7 +23,7 @@ module.exports = function (passport) {
     .patch(
       '/:id',
       passport.authenticate('jwt', { session: false }),
-      Authorization.roleAuthorization(['customer']),
+      Authorization.roleAuthorization(['customer', 'admin']),
       OrderController.updateStatus
     );
   
