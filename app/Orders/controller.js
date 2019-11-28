@@ -1,16 +1,21 @@
 const Order = require('./model');
 const Food = require('../Food/model');
+var uniqid = require('uniqid');
 
 const createOrder = function (req, res, next) {
+  //console.log(req.body.tableNum);
   const {
+    tableNum,
     items,
     total
   } = req.body;
 
-  const userId = req.user._id;
+  //const orderNum = req.user._id;
+  const orderNum = uniqid().toString();
 
   const order = new Order({
-    userId,
+    tableNum,
+    orderNum,
     items,
     total
   });
@@ -21,7 +26,9 @@ const createOrder = function (req, res, next) {
       res.json({
         success: true
       })
-    });
+    })
+
+    .catch(e => next(e));
 };
 
 const getOrderByUser = function (req, res, next) {
