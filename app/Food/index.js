@@ -5,15 +5,15 @@ const Authorization = require('../utils/roleAuthorization');
 module.exports = function (passport) {
   /* Get all foods or get food by id*/
   router.get('/',
-    passport.authenticate('jwt', { session: false }),
-    Authorization.roleAuthorization(['admin', 'customer']),
+    //passport.authenticate('jwt', { session: false }),
+    //Authorization.roleAuthorization(['admin', 'customer']),
     FoodController.getAllFood
   );
 
   /* Add a new food */
   router.post('/',
-    passport.authenticate('jwt', { session: false }),
-    Authorization.roleAuthorization(['admin']),
+    //passport.authenticate('jwt', { session: false }),
+    //Authorization.roleAuthorization(['admin']),
     FoodController.createFood
   );
 

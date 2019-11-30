@@ -5,9 +5,8 @@ const Food = new mongoose.Schema({
     type: String,
     required: true,
   },
-  category_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+  category: {
+    type: String,
     required: true,
   },
   price: {
