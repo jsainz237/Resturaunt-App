@@ -4,6 +4,11 @@
     z-index: 100;
 }
 
+.successMessage {
+    font-size: 33px;
+    color: $bright-green;
+}
+
 .itemContainer {
     z-index: 150;
     position: absolute;
@@ -11,7 +16,6 @@
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
 }
 
@@ -97,11 +101,7 @@
 .addToOrderButton {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-
-    padding-left: 124px;
-    padding-right: 20px;
 
     width: 380px;
     height: 50px;

@@ -1,6 +1,6 @@
 // VENDOR
 import React from 'react'
-import { View, Text, Animated, Easing, TextInput, Keyboard, Image } from 'react-native'
+import { View, Text, Animated, Easing, TextInput, Keyboard, Image, TouchableOpacity } from 'react-native'
 import { BlurView } from 'expo-blur'
 import { connect } from 'react-redux'
 import * as Font from 'expo-font'
@@ -10,6 +10,7 @@ import Overlay from '../Overlay/Overlay'
 import { toggleItemScreen } from './ItemScreen.reducer'
 import styles from './ItemScreen.styles.scss'
 import deviceDimensions from '../../utils/deviceDimensions'
+import { addItemToOrder } from '../OrderReviewer/OrderReviewer.reducer'
 
 /**
  * @name ItemScreen
@@ -21,6 +22,7 @@ class ItemScreen extends React.Component {
         super(props);
 
         this.state = {
+            itemAdded: false,
             textInputActive: false,
             specialInstructions: this.initialSpecialInstructionText,
             FontsLoaded: false,
@@ -43,6 +45,7 @@ class ItemScreen extends React.Component {
         this.onChangeText = this.onChangeText.bind(this)
         this.toggleTextInput = this.toggleTextInput.bind(this)
         this.changeQuantity = this.changeQuantity.bind(this)
+        this.addToOrder = this.addToOrder.bind(this)
     }
 
     async componentDidMount() {
@@ -95,9 +98,14 @@ class ItemScreen extends React.Component {
             this.setState({ quantity })
     }
 
+    addToOrder(item) {
+        this.props.addItemToOrder(item);
+        this.setState({ itemAdded: true })
+    }
+
     render() {
         const { item } = this.props;
-        const { specialInstructions, quantity, textInputActive } = this.state;
+        const { specialInstructions, quantity, textInputActive, itemAdded } = this.state;
         const topPosition = textInputActive ? this.positions.top - 200 : this.positions.top;
         const totalPrice = quantity * item.price;
 
@@ -111,6 +119,7 @@ class ItemScreen extends React.Component {
                         onTouchEnd={() => this.close()} 
                     /> 
                 }
+
                 <Animated.View 
                     onTouchEnd={() => textInputActive ? Keyboard.dismiss() : null } 
                     style={{ 
@@ -119,78 +128,89 @@ class ItemScreen extends React.Component {
                         left: this.positions.left,
                         height: this.componentDimensions.height,
                         width: this.componentDimensions.width,
+                        justifyContent: itemAdded ? 'center' : 'space-around',
                         ...styles.itemContainer
                     }}
                 >
-                    <View style={styles.specifications}>
-                        <Text style={{ fontFamily: 'Montserrat-Medium', ...styles.itemName }}>{item.name}</Text>
-                        <View style={{ ...styles.specBar }}/>
-                        <Text style={{ fontFamily: 'Montserrat-Medium', ...styles.itemDescription }}>{item.description}</Text>
-                        <TextInput 
-                            style={{
-                                shadowColor: '#000',
-                                shadowOffset: { width: 0, height: 3 },
-                                shadowOpacity: 0.27,
-                                shadowRadius: 4.65,
-                                elevation: 6,
-                                ...styles.textInput
-                            }}
-                            onChangeText={text => this.onChangeText(text)}
-                            multiline={true}
-                            value={specialInstructions}
-                            placeholder={this.initialSpecialInstructionText}
-                            onFocus={() => this.toggleTextInput(true)}
-                            onSubmitEditing={() => { Keyboard.dismiss(); this.toggleTextInput(false) }}
-                            keyboardAppearance="dark"
-                            returnKeyType="done"
-                        />
-                        <View style={{ ...styles.quantityContainer }}>
-                            <View 
-                                style={{ 
-                                    shadowColor: '#000',
-                                    shadowOffset: { width: 0, height: 3 },
-                                    shadowOpacity: 0.27,
-                                    shadowRadius: 4.65,
-                                    elevation: 3,
-                                    ...styles.plus
-                                }}
-                                onTouchEnd={() => this.changeQuantity(quantity - 1)}
-                            >
-                                <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25, marginLeft: 4, marginTop: -4 }}>-</Text>
-                            </View>
-                            <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25 }}>{quantity}</Text>
-                            <View 
+                    { itemAdded ? 
+                        <Text style={{ fontFamily: 'Montserrat-Bold', ...styles.successMessage }}>SUCCESS</Text> : 
+
+                        <View style={styles.specifications}>
+                            <Text style={{ fontFamily: 'Montserrat-Medium', ...styles.itemName }}>{item.name}</Text>
+                            <View style={{ ...styles.specBar }}/>
+                            <Text style={{ fontFamily: 'Montserrat-Medium', ...styles.itemDescription }}>{item.description}</Text>
+                            <TextInput 
                                 style={{
                                     shadowColor: '#000',
                                     shadowOffset: { width: 0, height: 3 },
                                     shadowOpacity: 0.27,
                                     shadowRadius: 4.65,
-                                    elevation: 3,
-                                    ...styles.minus
+                                    elevation: 6,
+                                    ...styles.textInput
                                 }}
-                                onTouchEnd={() => this.changeQuantity(quantity + 1)}
-                            >
-                                <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25, marginRight: 10, marginTop: -1 }}>+</Text>
+                                onChangeText={text => this.onChangeText(text)}
+                                multiline={true}
+                                value={specialInstructions}
+                                placeholder={this.initialSpecialInstructionText}
+                                onFocus={() => this.toggleTextInput(true)}
+                                onSubmitEditing={() => { Keyboard.dismiss(); this.toggleTextInput(false) }}
+                                keyboardAppearance="dark"
+                                returnKeyType="done"
+                            />
+                            <View style={{ ...styles.quantityContainer }}>
+                                <View 
+                                    style={{ 
+                                        shadowColor: '#000',
+                                        shadowOffset: { width: 0, height: 3 },
+                                        shadowOpacity: 0.27,
+                                        shadowRadius: 4.65,
+                                        elevation: 3,
+                                        ...styles.plus
+                                    }}
+                                    onTouchEnd={() => this.changeQuantity(quantity - 1)}
+                                >
+                                    <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25, marginLeft: 4, marginTop: -4 }}>-</Text>
+                                </View>
+                                <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25 }}>{quantity}</Text>
+                                <View 
+                                    style={{
+                                        shadowColor: '#000',
+                                        shadowOffset: { width: 0, height: 3 },
+                                        shadowOpacity: 0.27,
+                                        shadowRadius: 4.65,
+                                        elevation: 3,
+                                        ...styles.minus
+                                    }}
+                                    onTouchEnd={() => this.changeQuantity(quantity + 1)}
+                                >
+                                    <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25, marginRight: 10, marginTop: -1 }}>+</Text>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                    <View 
+                    }
+                    <TouchableOpacity
                         style={{
                             shadowColor: '#000',
                             shadowOffset: { width: 0, height: 3 },
                             shadowOpacity: 0.40,
                             shadowRadius: 4.65,
                             elevation: 3,
-                            ...styles.addToOrderButton
+                            paddingLeft: !itemAdded ? 124 : 0,
+                            paddingRight: !itemAdded ? 20 : 0,
+                            justifyContent: itemAdded ? 'center' : 'space-between',
+                            ...styles.addToOrderButton,
                         }}
+                        onPress={() => itemAdded ? this.close() : this.addToOrder({ quantity, ...item })}
                     >
                         <Text style={{ fontFamily: 'Montserrat-SemiBold', fontSize: 20, color: 'white' }}>
-                            Add to Order
+                            { itemAdded ? "Close" : "Add to Order" }
                         </Text>
-                        <Text style={{ fontFamily: 'Montserrat-Regular', fontSize: 20, color: 'white' }}>
-                            ${totalPrice}
-                        </Text>
-                    </View>
+                        { itemAdded ? null : 
+                            <Text style={{ fontFamily: 'Montserrat-Regular', fontSize: 20, color: 'white' }}>
+                                ${totalPrice.toFixed(2)}
+                            </Text>
+                        }
+                    </TouchableOpacity>
                 </Animated.View>
             </Animated.View>
         )
@@ -199,7 +219,8 @@ class ItemScreen extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleItemScreen: (item) => dispatch(toggleItemScreen(item))
+        toggleItemScreen: (item) => dispatch(toggleItemScreen(item)),
+        addItemToOrder: (item) => dispatch(addItemToOrder(item))
     }
 }
 

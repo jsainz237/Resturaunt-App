@@ -25,7 +25,7 @@ class Checkout extends React.Component {
         }
 
         this.animated_opacity = new Animated.Value(0);
-        this.animated_X_translation = new Animated.Value(-300);
+        this.animated_X_translation = new Animated.Value(-1000);
 
         this.startOpenAnimation = this.startOpenAnimation.bind(this);
         this.startCloseAnimation = this.startCloseAnimation.bind(this);
@@ -55,7 +55,7 @@ class Checkout extends React.Component {
         Animated.parallel([
             // animate moving order reviewer
             Animated.timing(this.animated_X_translation, {
-                toValue: -300,
+                toValue: -1000,
                 duration: 500,
                 easing: Easing.bezier(.39, .01, .59, 1)
             }),

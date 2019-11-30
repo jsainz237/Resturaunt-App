@@ -2,9 +2,11 @@
 import React from 'react'
 import { Text, View, Image } from 'react-native'
 import * as Font from 'expo-font'
+import { connect } from 'react-redux'
 
 // APP
 import styles from './ItemFrameLarge.styles.scss'
+import { toggleItemScreen } from '../ItemScreen/ItemScreen.reducer'
 
 class ItemFrameLarge extends React.Component {
     constructor(props) {
@@ -23,10 +25,11 @@ class ItemFrameLarge extends React.Component {
     }
 
     render() {
-        const { item } = this.props
+        const { item, toggleItemScreen } = this.props
         const itemPrice = `$${item.price}`
         return !this.state.FontsLoaded ? null : (
             <View 
+                onTouchEnd={() => toggleItemScreen(item)}
                 style={{
                     shadowColor: '#000',
                     shadowOffset: { width: 0, height: 3 },
@@ -54,4 +57,10 @@ class ItemFrameLarge extends React.Component {
     }
 }
 
-export default ItemFrameLarge;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleItemScreen: (item) => dispatch(toggleItemScreen(item))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ItemFrameLarge);
