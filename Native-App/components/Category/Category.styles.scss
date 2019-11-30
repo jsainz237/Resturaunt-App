@@ -1,0 +1,14 @@
+@import '../../global';
+
+.categoryText {
+    font-size: 33;
+    color: $light-gray;
+    margin-bottom: 8px;
+}
+
+.itemsWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}

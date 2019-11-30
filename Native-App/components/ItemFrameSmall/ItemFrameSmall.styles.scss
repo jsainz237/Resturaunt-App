@@ -1,0 +1,28 @@
+@import '../../global';
+
+$smallItemHeight: 100px;
+$smallItemWidth: 110px;
+
+.itemSmallContainer {
+    height: $smallItemHeight;
+    width: $smallItemWidth;
+    background-color: white;  
+    border: 0.5px solid $border-gray;  
+    margin-right: 16px;
+}
+
+$topMargin: 14px;
+$bottomMargin: 12px;
+$sideMargin: 18px;
+.itemSmallText {
+    display: flex;
+    flex-direction: column;
+    margin-top: $topMargin;
+    margin-bottom: $bottomMargin;
+    height: $smallItemHeight - $topMargin - $bottomMargin;
+    margin-left: $sideMargin;
+    margin-right: $sideMargin;
+    color: $item-text-color;
+    align-items: center;
+    justify-content: space-between;
+}
