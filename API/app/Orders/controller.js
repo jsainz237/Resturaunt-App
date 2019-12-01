@@ -7,7 +7,7 @@ const createOrder = function (req, res, next) {
   const {
     tableNum,
     items,
-    total
+    total,
   } = req.body;
 
   //const orderNum = req.user._id;

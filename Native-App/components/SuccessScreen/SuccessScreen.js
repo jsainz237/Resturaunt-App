@@ -5,26 +5,27 @@ import { connect } from 'react-redux'
 import * as Font from 'expo-font'
 
 // APP
-import BackgroundImageGallery from '../BackgroundImageGallery/BackgroundImageGallery'
-import backgroundImages from '../../utils/backgroundImages';
-import styles from './ScreenSaver.scss'
+import styles from './SuccessScreen.styles.scss'
 import { updateCurrentPage } from '../AppNavigator/AppNavigator.reducer'
 import Device from '../../utils/deviceDimensions'
+import { clearOrder } from '../OrderReviewer/OrderReviewer.reducer'
 const logoCircle = require('../../assets/images/logoCircle.png');
 
-class ScreenSaver extends React.Component {
+class SuccessScreen extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             FontsLoaded: false,
+            timer: 10,
         }
+        this.timerRef = null;
         this.circle_rotation_animation = new Animated.Value(0);
         this.logo_circle_height = this.logo_circle_width = 750;
         this.logo_circle_top_position = ((Device.height - 150) / 2) - (this.logo_circle_height / 2);
         this.logo_circle_left_position = (Device.width / 2) - (this.logo_circle_width / 2);
         
-        this.goToHomePage = this.goToHomePage.bind(this);
+        this.goToScreenSaver = this.goToScreenSaver.bind(this);
         this.startCircleAnimation = this.startCircleAnimation.bind(this);
 
     }
@@ -35,13 +36,17 @@ class ScreenSaver extends React.Component {
             'Montserrat-Light': require('../../assets/fonts/Montserrat/Montserrat-Light.ttf'),
         })
         this.setState({ FontsLoaded: true });
-        this.props.updateCurrentPage("ScreenSaver");
+        this.props.updateCurrentPage("SuccessScreen");
         this.startCircleAnimation();
+        
+        this.setState({ timer: this.state.timer -1 });
+        this.timerRef = setInterval(() => this.setState({ timer: this.state.timer - 1 }), 1000);
     }
 
-    goToHomePage() {
+    goToScreenSaver() {
         const { navigate } = this.props.navigation;
-        navigate('Menu')
+        this.props.clearOrder();
+        navigate('ScreenSaver')
     }
 
     startCircleAnimation() {
@@ -63,6 +68,10 @@ class ScreenSaver extends React.Component {
 
         const buttonContainerHeight = Device.height - (Device.height - 150);
 
+        if(this.state.timer === -1) {
+            clearInterval(this.timerRef);
+        }
+
         return !this.state.FontsLoaded ? null : (
             <View style={{ height: Device.height, width: Device.width, ...styles.wrapper}} onTouchEnd={() => this.goToHomePage()}>
                 <View style={{ height: Device.height - 150, widht: Device.width, ...styles.logoContainer}}>
@@ -80,13 +89,15 @@ class ScreenSaver extends React.Component {
                     />
 
                     <View style={styles.textContainer}>
-                        <Text style={{ fontFamily: 'Montserrat-Bold', ...styles.ginoLogoText}}>Gino's</Text>
-                        <Text style={{ fontFamily: 'Montserrat-Light', ...styles.subLogoText}}>restaurant + bar</Text>
+                        <Text style={{ fontFamily: 'Montserrat-Bold', ...styles.successText}}>SUCCESS</Text>
+                        <Text style={{ fontFamily: 'Montserrat-Light', ...styles.subSuccessText}}>Your order is being prepared</Text>
+
                     </View>
                 </View>
 
                 <View style={{ height: buttonContainerHeight, width: Device.width, ...styles.startTextContainer }}>
-                        <Text style={{ fontFamily: 'Montserrat-Bold', ...styles.startText}}>Touch to Start</Text>
+                        <Text style={{ fontFamily: 'Montserrat-Bold', ...styles.returnText}}>returning to screenSaver in {this.state.timer}</Text>
+                        {this.state.timer === -1 ? this.goToScreenSaver() : null }
                 </View>
             </View>
         )
@@ -95,8 +106,9 @@ class ScreenSaver extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateCurrentPage: (currentPage) => dispatch(updateCurrentPage(currentPage))
+        updateCurrentPage: (currentPage) => dispatch(updateCurrentPage(currentPage)),
+        clearOrder: () => dispatch(clearOrder())
     }
 }
 
-export default connect(null, mapDispatchToProps)(ScreenSaver);
+export default connect(null, mapDispatchToProps)(SuccessScreen);

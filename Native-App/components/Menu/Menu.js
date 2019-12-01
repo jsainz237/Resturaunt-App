@@ -10,48 +10,48 @@ import { updateCurrentPage } from '../AppNavigator/AppNavigator.reducer'
 import ItemFrameSmall from '../ItemFrameSmall/ItemFrameSmall'
 import Category from '../Category/Category'
 import ItemScreen from '../ItemScreen/ItemScreen'
+import Checkout from '../Checkout/Checkout'
 
 class Menu extends React.Component {
     constructor(props) {
         super(props);
 
-        this.dummyData = {
-            items: [
-                { 
-                    name: "The Item Name",
-                    category: "Entrees",
-                    description: "This is the description",
-                    price: 2.99,
-                },
-                { 
-                    name: "Item-2",
-                    category: "Drinks",
-                    description: "This is the description of the item",
-                    photo: "http://www.pngnames.com/files/4/Cocktail-PNG-Photo-Background.png",
-                    price: 7.99,
-                },
-                { 
-                    name: "Item-3",
-                    category: "Entrees",
-                    description: "This is the description",
-                    price: 2.99,
-                },
-            ]
+        this.state = {
+            foodItems: null,
+            categories: null,
         }
 
-        this.categories = new Set(this.dummyData.items.map(item => item.category));
-
+        this.goToSuccessScreen = this.goToSuccessScreen.bind(this);
         this.renderItems = this.renderItems.bind(this);
+        this.getFoodItems = this.getFoodItems.bind(this);
     }
 
     componentDidMount() {
         this.props.updateCurrentPage('Menu');
+        this.getFoodItems();
+    }
+
+    goToSuccessScreen() {
+        const { navigate } = this.props.navigation;
+        navigate('SuccessScreen');
+    }
+
+    getFoodItems() {
+        return fetch(`${this.props.API_URL}/food`)
+            .then((res) => res.json())
+            .then((resJson) => {
+                this.setState({
+                    foodItems: resJson,
+                    categories: new Set(resJson.map(item => item.category))
+                });
+            })
+            .catch((error) => console.error(error))
     }
 
     renderItems() {
-        const categories = Array.from(this.categories);
+        const categories = Array.from(this.state.categories);
         const categoryComponents = categories.map((category, index) => {
-            const items = this.dummyData.items.filter(item => item.category === category);
+            const items = this.state.foodItems.filter(item => item.category === category);
             return <Category category={category} items={items} key={index}/>
         })
 
@@ -60,9 +60,10 @@ class Menu extends React.Component {
     
     render() {
         const { itemToShow } = this.props;
-        return (
+        return this.state.foodItems === null ? null : (
             <SafeAreaView style={styles.safeView}>
                 { itemToShow && <ItemScreen item={itemToShow} /> }
+                <Checkout goToSuccessScreen={this.goToSuccessScreen} />
                 <MenuNav />
                 <ScrollView style={styles.menuContainer}>
                     {this.renderItems()}
@@ -74,7 +75,9 @@ class Menu extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        itemToShow: state.ItemScreen.item
+        itemToShow: state.ItemScreen.item,
+        API_URL: state.Global.API_URL,
+        TableNum: state.Global.TableNum,
     }
 }
 

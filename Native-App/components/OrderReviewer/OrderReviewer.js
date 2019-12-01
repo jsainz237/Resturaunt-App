@@ -21,16 +21,22 @@ class OrderReviewer extends React.Component {
         this.state = {
             FontsLoaded: false,
         }
+        this.mounted = false;
         
         this.renderOrderItems = this.renderOrderItems.bind(this);
     }
 
     async componentDidMount() {
+        this.mounted = true;
         await Font.loadAsync({
             'Montserrat-Bold': require('../../assets/fonts/Montserrat/Montserrat-Bold.ttf'),
             'Montserrat-SemiBold': require('../../assets/fonts/Montserrat/Montserrat-SemiBold.ttf'),
         })
-        this.setState({ FontsLoaded: true });
+        this.mounted ? this.setState({ FontsLoaded: true }) : null;
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     renderOrderItems() {
@@ -52,7 +58,7 @@ class OrderReviewer extends React.Component {
     }
 
     render() {
-        const { animated_X_translation, orderItems } = this.props;
+        const { animated_X_translation, orderItems, goToSuccessScreen } = this.props;
         let totalPrice = 0;
         orderItems.forEach(item => totalPrice += (item.quantity * item.price));
         totalPrice = totalPrice.toFixed(2);
@@ -69,7 +75,7 @@ class OrderReviewer extends React.Component {
                     <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25 }}>Total:</Text>
                     <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 25 }}>${totalPrice}</Text>
                 </View>
-                <OrderConfirmationButton />
+                <OrderConfirmationButton goToSuccessScreen={goToSuccessScreen} />
             </Animated.View>
         )
     }

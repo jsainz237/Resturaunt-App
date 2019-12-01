@@ -72,10 +72,11 @@ class Checkout extends React.Component {
 
     render() {
         const { open } = this.state;
+        const { goToSuccessScreen } = this.props;
         return (
             <View style={styles.checkoutWrapper}>
                 
-                <OrderReviewer animated_X_translation={this.animated_X_translation} />
+                <OrderReviewer animated_X_translation={this.animated_X_translation} goToSuccessScreen={goToSuccessScreen} />
 
                 { open ? 
                     <Overlay bgColor='black' onTouch={this.startCloseAnimation} animated_opacity={this.animated_opacity} /> : 

@@ -14,7 +14,7 @@ const AppWrapper = (props) => {
     const { currentPage } = props;
     return (
         <View style={{ height: '100%', width: '100%' }}>
-            { currentPage !== 'ScreenSaver' ? <Checkout /> : null}
+            {/* { currentPage === "Menu"  ? <Checkout /> : null} */}
             <AppNavigator />
         </View>
     )

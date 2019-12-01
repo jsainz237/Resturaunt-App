@@ -1,0 +1,42 @@
+@import '../../global';
+
+.wrapper {
+    background-color: $dark-gray;
+}
+
+.logoContainer {
+    background-color: $dark-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textContainer {
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.successText {
+    color: $bright-green;
+    font-size: 5rem;
+}
+
+.subSuccessText {
+    color: $dark-red;
+    font-size: 2rem;
+}
+
+.startTextContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $dark-gray
+}
+
+.returnText {
+    color: $light-gray;
+    font-size: 2rem;
+}

@@ -50,7 +50,7 @@ class ItemFrameLarge extends React.Component {
                             <Text style={{ fontSize: 12, textAlign: 'left' }}>{itemPrice}</Text>
                         </View>
                     </View>
-                    <Image source={{uri: item.photo}} style={styles.photo}/>
+                    <Image source={{uri: item.image}} style={styles.photo}/>
                 </View>
             </View>
         )

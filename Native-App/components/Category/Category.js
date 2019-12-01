@@ -30,7 +30,7 @@ class Category extends React.Component {
     renderItemFrames() {
         const { items } = this.props;
         const itemFrames = items.map((item, index) => {
-            return item.photo ? 
+            return item.image ? 
                 <ItemFrameLarge item={item} key={index} /> : 
                 <ItemFrameSmall item={item} key={index} />
         })

@@ -200,7 +200,7 @@ class ItemScreen extends React.Component {
                             justifyContent: itemAdded ? 'center' : 'space-between',
                             ...styles.addToOrderButton,
                         }}
-                        onPress={() => itemAdded ? this.close() : this.addToOrder({ quantity, ...item })}
+                        onPress={() => itemAdded ? this.close() : this.addToOrder({ quantity, specialInstructions, ...item })}
                     >
                         <Text style={{ fontFamily: 'Montserrat-SemiBold', fontSize: 20, color: 'white' }}>
                             { itemAdded ? "Close" : "Add to Order" }

@@ -20,8 +20,14 @@ export function removeItemFromOrder(item) {
     }
 }
 
+export function clearOrder() {
+    return {
+        type: "CLEAR_ORDER"
+    }
+}
+
 const initialState = {
-    items: []
+    items: [],
 }
 
 export default function OrderReducer(state = initialState, action) {
@@ -45,6 +51,9 @@ export default function OrderReducer(state = initialState, action) {
             }
             return { items: updatedItems };
 
+        case "CLEAR_ORDER":
+            return { items: [] }
+            
         default:
             return state;
     }
