@@ -64,7 +64,7 @@ class Menu extends React.Component {
             <SafeAreaView style={styles.safeView}>
                 { itemToShow && <ItemScreen item={itemToShow} /> }
                 <Checkout goToSuccessScreen={this.goToSuccessScreen} />
-                <MenuNav />
+                {/* <MenuNav /> */}
                 <ScrollView style={styles.menuContainer}>
                     {this.renderItems()}
                 </ScrollView>

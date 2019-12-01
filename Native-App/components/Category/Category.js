@@ -39,10 +39,11 @@ class Category extends React.Component {
 
     render() {
         const { category, items } = this.props;
+        let categoryTitleCase = category[0].toUpperCase() + category.slice(1).toLowerCase();
         return !this.state.FontsLoaded ? null : (
             <View>
                 <Text style={{ fontFamily: 'Montserrat-Bold', ...styles.categoryText}}>
-                    {category}
+                    {categoryTitleCase}
                 </Text>
                 <View style={styles.itemsWrapper}>
                     {this.renderItemFrames()}
