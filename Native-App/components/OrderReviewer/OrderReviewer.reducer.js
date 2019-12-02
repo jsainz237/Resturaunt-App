@@ -47,7 +47,7 @@ export default function OrderReducer(state = initialState, action) {
 
             updatedItems[itemIndex].quantity -= 1
             if( updatedItems[itemIndex].quantity === 0 ) {
-                updatedItems = updatedItems.splice(itemIndex, 1);
+                updatedItems.splice(itemIndex, 1);
             }
             return { items: updatedItems };
 

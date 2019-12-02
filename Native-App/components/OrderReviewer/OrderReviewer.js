@@ -48,9 +48,14 @@ class OrderReviewer extends React.Component {
                     <Text style={{ fontFamily: 'Montserrat-SemiBold', ...styles.item }}>
                         {`\u2022`} {item.name}
                     </Text>
-                    <Text style={{ fontFamily: 'Montserrat-SemiBold', ...styles.item }}>
-                        x {item.quantity}  -  {spaceChar}${itemTotalPrice}
-                    </Text>
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontFamily: 'Montserrat-SemiBold', ...styles.item }}>
+                            x {item.quantity}  -  {spaceChar}${itemTotalPrice}
+                        </Text>
+                        <View style={styles.removeButton} onTouchEnd={() => this.props.removeItemFromOrder(item)}>
+                            <Text style={{ fontFamily: 'Montserrat-SemiBold', ...styles.removeText }}>-</Text>
+                        </View>
+                    </View>
                 </View>
             )
         })
