@@ -1,9 +1,0 @@
-version: "Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
-options: "2bd1f45d7d0a869e7fdc9f8fe6dc8d84"
-build_time: [1573868166, 156140000]
-inputs:
-  "/Users/wassimlagnaoui/IOS-Projects/Gino/Gino/Model/Item.swift": [1573868147, 993471204]
-  "/Users/wassimlagnaoui/IOS-Projects/Gino/Gino/Controller/ViewController.swift": [1573596371, 489341033]
-  "/Users/wassimlagnaoui/IOS-Projects/Gino/Gino/Model/Order.swift": [9223372036, 854775807]
-  "/Users/wassimlagnaoui/IOS-Projects/Gino/Gino/AppDelegate.swift": [1573596371, 481468063]
-  "/Users/wassimlagnaoui/IOS-Projects/Gino/Gino/SceneDelegate.swift": [1573596371, 486549687]

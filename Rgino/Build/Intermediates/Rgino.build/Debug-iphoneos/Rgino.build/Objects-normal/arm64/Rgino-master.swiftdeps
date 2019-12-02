@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
-options: "cf475661a8a616599d407928af820c9c"
-build_time: [1571337856, 813096000]
-inputs:
-  "/Users/wassimlagnaoui/IOS-Projects/Rgino/Rgino/ViewController.swift": [1571331856, 851455390]
-  "/Users/wassimlagnaoui/IOS-Projects/Rgino/Rgino/AppDelegate.swift": [1571336347, 167760133]

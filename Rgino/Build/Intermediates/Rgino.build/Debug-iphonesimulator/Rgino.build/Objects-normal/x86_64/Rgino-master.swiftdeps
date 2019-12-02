@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
-options: "b894bb6e73e8aad329213a614bbe6957"
-build_time: [1571627963, 18949000]
-inputs:
-  "/Users/wassimlagnaoui/RestaurantAppWassim/Resturaunt-App/Rgino/Rgino/ViewController.swift": [1571598150, 692630209]
-  "/Users/wassimlagnaoui/RestaurantAppWassim/Resturaunt-App/Rgino/Rgino/AppDelegate.swift": [1571346900, 83217052]
