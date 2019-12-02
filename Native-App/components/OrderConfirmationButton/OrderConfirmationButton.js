@@ -36,6 +36,10 @@ class OrderConfirmationButton extends React.Component {
     }
 
     async sendOrder(totalPrice) {
+        if(this.props.items.length === 0) {
+            alert("Please Add Items to Your Order")
+            return;
+        }
         return fetch(`${this.props.API_URL}/orders`, {
             method: 'POST',
             headers: {
