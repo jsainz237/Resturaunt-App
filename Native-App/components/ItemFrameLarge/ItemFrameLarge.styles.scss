@@ -1,7 +1,7 @@
 @import '../../global';
 
 $largeItemHeight: 100px;
-$largeItemWidth: 360px;
+$largeItemWidth: 362px;
 
 .itemLargeContainer {
     height: $largeItemHeight;
@@ -9,6 +9,7 @@ $largeItemWidth: 360px;
     background-color: white;  
     border: 0.5px solid $border-gray;  
     margin-right: 16px;
+    margin-bottom: 8px;
 }
 
 $topMargin: 14px;
