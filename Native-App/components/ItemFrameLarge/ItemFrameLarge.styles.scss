@@ -1,0 +1,54 @@
+@import '../../global';
+
+$largeItemHeight: 100px;
+$largeItemWidth: 362px;
+
+.itemLargeContainer {
+    height: $largeItemHeight;
+    width: $largeItemWidth;
+    background-color: white;  
+    border: 0.5px solid $border-gray;  
+    margin-right: 16px;
+    margin-bottom: 8px;
+}
+
+$topMargin: 14px;
+$bottomMargin: 12px;
+$sideMargin: 18px;
+.itemLargeContent {
+    display: flex;
+    flex-direction: row;
+    margin-top: $topMargin;
+    margin-bottom: $bottomMargin;
+    height: $largeItemHeight - $topMargin - $bottomMargin;
+    margin-left: $sideMargin;
+    margin-right: $sideMargin;
+    color: $item-text-color;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itemLargeTextPlusBar {
+    display: flex;
+    flex-direction: row;
+}
+
+.itemLargeText {
+    margin-left: 16px;
+    height: $largeItemHeight - $topMargin - $bottomMargin;
+    width: 118px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.goldBar {
+    width: 3px;
+    height: $largeItemHeight - $topMargin - $bottomMargin;
+    background-color: gold;
+}
+
+.photo {
+    height: 80px;
+    width: 76px;
+}

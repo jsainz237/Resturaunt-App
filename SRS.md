@@ -18,13 +18,16 @@ The best way to decrease expenses and increase profit in the restaurant business
 The proposed system will increase order accuracy and decrease the time between the customer sitting down and receiving their food. It will also decrease the time the customer has to wait to pay for their order. This should increase the overall satisfaction of the customer, promoting return business.
 
 ##### 1.2 - Scope
-To start, we are going to focus only on the customers, the servers, and the kitchen. By acting as an intermediate part between the customer and the restaurant staff, we will be able to speed up the process of ordering food, getting the order to the kitchen, and getting completed orders to tables. Not only will this system benefit the customer, but servers will now be able to manage their tables and orders more efficiently. 
- 
-##### 1.3 - References
-Currently our SRS do not require any reference since we will be surfing the internet and the course slides for format. The document is built on the following references:
+To start, we are going to focus only on the customers, the servers, and the kitchen. By acting as an intermediate part, we will be able to speed up the 
+process of ordering food, getting the order to the kitchen, and getting completed orders to tables. Not only will this system benefit the customer, 
+but servers will now be able to manage their tables and orders more efficiently. The app will be used for several business promotion and customer can quickly give their recommendations to their dear ones.
 
-- IEEE Std R. S. Pressman, Software engineering: a practitioner’s approach, 8th ed. New York, NY: McGraw-Hill Education, 2014.
+##### 1.3 - References
+Currently our SRS do not require any reference since we will be surfing the internet and the course slide for format. The document is built on the following references:
+- IEEE Std R. S. Pressman, Software engineering: a practitioners approach, 8th ed. New York, NY: McGraw-Hill Education, 2014.
  
+---
+
 ### 2. Overall Description
 Our system of applications will provide an overall better experience for customers at a restaurant by decreasing the time it takes to place and order, receive their order, and pay for the order. The system will also provide the wait staff and kitchen staff of the restaurant by organizing orders and giving them notifications on when orders are placed or are ready to be served. Overall, this application will provide better communication between the customers, kitchen staff, and wait staff
 ##### 2.1 - User Characteristics
