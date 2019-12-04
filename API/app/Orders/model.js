@@ -6,7 +6,7 @@ const Orders = new mongoose.Schema({
     required: true,
   },
   tableNum: {
-    type: String,
+    type: Number,
     required: true,
   },
   items: {

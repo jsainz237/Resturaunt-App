@@ -19,7 +19,7 @@ const initialState = {
 export default function GlobalVarsReducer(state = initialState, action) {
     switch(action.type) {
         case "SET_VARS": 
-            return { API_URL: action.API_URL, TableNum: action.TableNum };
+            return { API_URL: action.API_URL, TableNum: parseInt(action.TableNum) };
         default:
             return state;
     }
